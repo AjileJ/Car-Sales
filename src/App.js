@@ -18,12 +18,12 @@ const App = () => {
   return (
     <div className="boxes">
       <div className="box">
-        {/* <Header  /> */}
+        <Header  />
         <AddedFeatures/>
       </div>
       <div className="box">
         <AdditionalFeatures  />
-        {/* <Total  /> */}
+        <Total  />
       </div>
     </div>
   );

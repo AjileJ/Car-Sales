@@ -1,3 +1,4 @@
+import { ADD_FEATURES } from "../actions";
 
 const initialState = {
     additionalPrice: 0,
@@ -17,11 +18,16 @@ const initialState = {
   };
 
 
-
-
 export const AppReducer = (state = initialState, action) => {
   switch(action.type){
-    
+    case ADD_FEATURES:
+        return{...state,
+          car: {
+            ...state.car,
+            features: [...state.car.features, action.payload]
+          },
+          store: state.store.filter(item => item.id !== action.payload.id)
+        }
     default:
     return state;
   }
