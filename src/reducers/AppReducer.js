@@ -1,6 +1,6 @@
-import { ADD_FEATURES } from "../actions";
+import { ADD_FEATURES, REMOVE_FEATURES } from "../actions";
 
-const initialState = {
+export const initialState = {
     additionalPrice: 0,
     car: {
       price: 26395,
@@ -21,13 +21,25 @@ const initialState = {
 export const AppReducer = (state = initialState, action) => {
   switch(action.type){
     case ADD_FEATURES:
-        return{...state,
+        return{
+          ...state,
           car: {
             ...state.car,
             features: [...state.car.features, action.payload]
           },
-          store: state.store.filter(item => item.id !== action.payload.id)
+          store: state.store.filter(item => item.id !== action.payload.id),
+          additionalPrice: state.additionalPrice = state.additionalPrice + action.payload.price
         }
+        case REMOVE_FEATURES:
+          return{
+            ...state,
+            additionalPrice: state.additionalPrice - action.payload.price,
+            car:{
+              ...state.car,
+              features: state.car.features.filter(item=>!(item.id===action.payload.id))
+            },
+            store:[...state.store,action.payload]
+          }
     default:
     return state;
   }

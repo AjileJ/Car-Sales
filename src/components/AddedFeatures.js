@@ -8,10 +8,10 @@ const AddedFeatures = props => {
   return (
     <div className="content">
       <h6>Added features:</h6>
-      {props.features.length ? (
+      {props.car.features.length ? (
         <ol type="1">
-          {props.features.map(item => (
-            <AddedFeature key={item.id} feature={item} />
+          {props.car.features.map(item => (
+            <AddedFeature key={item.id} feature={item} remove={props.removeFeatures} />
           ))}
         </ol>
       ) : (
@@ -21,15 +21,13 @@ const AddedFeatures = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    features: state.car.features,
-
-  };
-};
-
+const mapStateToProps = (state) => {
+return{
+    car: state.car
+ }
+}
 
 
-export default connect(mapStateToProps,{})( AddedFeatures);
+export default connect(mapStateToProps, {})(AddedFeatures);
 
 
